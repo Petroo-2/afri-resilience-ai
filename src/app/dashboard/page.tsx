@@ -25,7 +25,7 @@ export default function Dashboard() {
   const [rainfallData, setRainfallData] = useState<ChartDataPoint[]>([]);
   const [foodSecurityData, setFoodSecurityData] = useState<ChartDataPoint[]>([]);
   const [waterStressData, setWaterStressData] = useState<ChartDataPoint[]>([]);
-  const [selectedRegion, setSelectedRegion] = useState<string | null>(null);
+  const [, setSelectedRegion] = useState<string | null>(null);
   const [filterHighOnly, setFilterHighOnly] = useState(true);
 
   useEffect(() => {
