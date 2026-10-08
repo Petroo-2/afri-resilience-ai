@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --navy: #071426;
+  --navy-2: #0b2037;
+  --blue: #48b7ef;
+  --cyan: #68e0db;
+  --text: #12263c;
+  --muted: #6d7d90;
+  --line: #dce5ed;
+  --bg: #f5f8fb;
+  --red: #d95757;
+  --green: #2b9b75;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  font-family: 'Inter', Arial, sans-serif;
+  line-height: 1.55;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  line-height: 1.08;
+}
+
+h1 {
+  font-size: clamp(46px, 6vw, 80px);
+  letter-spacing: -0.06em;
+  margin: 15px 0;
+}
+
+h2 {
+  font-size: clamp(32px, 4vw, 52px);
+  letter-spacing: -0.04em;
+  margin: 12px 0 35px;
+}
+
+p {
+  color: var(--muted);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.btn {
+  display: inline-block;
+  padding: 13px 18px;
+  border-radius: 9px;
+  background: #fff;
+  border: 1px solid var(--line);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.btn-dark {
+  background: var(--navy);
+  color: #fff;
+  border: 0;
+}
+
+.btn-dark:hover {
+  background: var(--navy-2);
+}
+
+.section {
+  padding: 100px 0;
+}
+
+@media (max-width: 900px) {
+  .section {
+    padding: 60px 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .section {
+    padding: 40px 0;
+  }
+}
