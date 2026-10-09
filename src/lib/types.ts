@@ -1,41 +1,28 @@
-export interface RiskAlert {
+export interface CountyData {
   id: string;
-  severity: 'high' | 'medium' | 'low';
-  title: string;
-  region: string;
-  description: string;
-  timestamp: string;
-  confidence: number;
-}
-
-export interface RegionData {
   name: string;
-  score: number;
-  climate: number;
-  food: number;
-  water: number;
-  livelihood: number;
+  code: string;
+  region: string;
+  latitude: number;
+  longitude: number;
+  resilenceScore: number;
+  climateScore: number;
+  foodScore: number;
+  waterScore: number;
+  livelihoodScore: number;
   alerts: number;
+  communities: number;
+  interventions: number;
+  lastUpdated: Date;
+  updatedAt: Date;
 }
 
-export interface ChartDataPoint {
-  name: string;
-  value: number;
-  timestamp?: string;
-}
-
-export interface InterventionTracker {
-  id: string;
-  name: string;
-  region: string;
-  progress: number;
-  status: 'on-track' | 'at-risk' | 'completed';
-  target: string;
-}
-
-export interface DashboardMetrics {
-  overallScore: number;
-  activeAlerts: number;
-  communitiesMonitored: number;
-  interventionsOnTrack: number;
+export interface UserSession {
+  user: {
+    id: string;
+    name?: string | null;
+    email?: string | null;
+    image?: string | null;
+  };
+  expires: string;
 }
