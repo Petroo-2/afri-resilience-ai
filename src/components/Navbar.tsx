@@ -2,8 +2,11 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import { useSession, signOut } from 'next-auth/react';
+import { Menu, X } from 'lucide-react';
 
 export default function Navbar() {
+  const { data: session } = useSession();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -20,15 +23,15 @@ export default function Navbar() {
         </Link>
 
         <button
-          className="md:hidden text-2xl bg-none border-0 cursor-pointer"
+          className="md:hidden text-2xl bg-none border-0 cursor-pointer p-0"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
-          ☰
+          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
 
         <nav
           className={`hidden md:flex gap-6 items-center text-sm font-semibold ${
-            mobileMenuOpen ? 'block absolute top-[76px] left-0 right-0 bg-white p-5 flex-col gap-3' : ''
+            mobileMenuOpen ? 'block absolute top-[76px] left-0 right-0 bg-white p-5 flex-col gap-3 md:static md:flex-row md:gap-6 md:bg-transparent md:p-0' : ''
           }`}
         >
           <Link href="/#platform" className="hover:text-blue transition">
@@ -37,9 +40,28 @@ export default function Navbar() {
           <Link href="/#impact" className="hover:text-blue transition">
             Impact
           </Link>
-          <Link href="/dashboard" className="bg-navy text-white px-4 py-2 rounded-lg hover:bg-navy-2 transition">
-            Open Dashboard
-          </Link>
+          {session ? (
+            <>
+              <Link href="/dashboard" className="hover:text-blue transition">
+                Dashboard
+              </Link>
+              <button
+                onClick={() => signOut({ callbackUrl: '/' })}
+                className="bg-danger text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
+              >
+                Sign Out
+              </button>
+            </>
+          ) : (
+            <>
+              <Link href="/auth/signin" className="hover:text-blue transition">
+                Sign In
+              </Link>
+              <Link href="/auth/signup" className="bg-navy text-white px-4 py-2 rounded-lg hover:bg-navy-2 transition">
+                Sign Up
+              </Link>
+            </>
+          )}
         </nav>
       </div>
     </header>
